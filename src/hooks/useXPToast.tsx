@@ -15,7 +15,7 @@ export function XPToastProvider({ children }: { children: ReactNode }) {
     setToasts((prev) => [...prev, { id, amount, reason }])
     window.setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id))
-    }, 2500)
+    }, 1400)
   }, [])
 
   const value = useMemo(() => ({ showXP }), [showXP])
