@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { Award, BookOpen, LayoutDashboard, Shield, Trophy, Users } from 'lucide-react'
+import { Activity, Award, BookOpen, LayoutDashboard, Shield, Trophy, Users } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import { useI18n } from '../../context/I18nContext'
 
@@ -34,6 +34,9 @@ export function Sidebar() {
           </NavLink>
           <NavLink to="/certificate" className={({ isActive }) => `${item} ${isActive ? active : ''}`}>
             <Award className="h-4 w-4" /> {t('navCertificate')}
+          </NavLink>
+          <NavLink to="/health-score" className={({ isActive }) => `${item} ${isActive ? active : ''}`}>
+            <Activity className="h-4 w-4" /> Health Score
           </NavLink>
           {user.role === 'admin' && (
             <NavLink to="/admin" className={({ isActive }) => `${item} ${isActive ? active : ''}`}>

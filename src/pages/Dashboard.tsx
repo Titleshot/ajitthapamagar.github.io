@@ -32,6 +32,14 @@ export function Dashboard() {
     totalXp,
   } = useProgress()
   const [activePanel, setActivePanel] = useState<'badges' | 'recent' | 'leaderboard' | 'rewards'>('recent')
+  const healthScore = useMemo(() => {
+    try {
+      const raw = localStorage.getItem('mig_health_score_result')
+      return raw ? (JSON.parse(raw) as { totalScore: number }) : null
+    } catch {
+      return null
+    }
+  }, [])
   const localizedLevel =
     language === 'ne'
       ? level === 'Beginner'
@@ -178,6 +186,30 @@ export function Dashboard() {
           navigate(nextLesson ? `/lesson/${nextLesson.id}` : '/courses')
         }}
       />
+
+      <motion.section initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="glass rounded-2xl p-5">
+        <h3 className="text-lg font-semibold text-mig-white">🧠 MIG वित्तीय स्वास्थ्य जाँच</h3>
+        <p className="mt-2 text-sm text-mig-muted">आफ्नो आर्थिक अवस्था २ मिनेटमा बुझ्नुहोस्।</p>
+        {healthScore ? (
+          <div className="mt-3 space-y-2">
+            <p className="text-sm text-mig-white">तपाईंको स्कोर: {healthScore.totalScore}/100</p>
+            <p className="text-xs text-mig-muted">अर्को लक्ष्य: 75+</p>
+            <Link
+              to="/health-score/result"
+              className="inline-flex rounded-xl bg-mig-gold px-4 py-2 text-sm font-semibold text-mig-bg hover:bg-mig-gold/90"
+            >
+              Roadmap हेर्नुहोस्
+            </Link>
+          </div>
+        ) : (
+          <Link
+            to="/health-score"
+            className="mt-4 inline-flex rounded-xl bg-mig-gold px-4 py-2 text-sm font-semibold text-mig-bg hover:bg-mig-gold/90"
+          >
+            स्कोर जाँच गरौँ
+          </Link>
+        )}
+      </motion.section>
 
       <div className="grid gap-6">
         <motion.div

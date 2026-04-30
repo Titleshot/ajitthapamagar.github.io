@@ -13,6 +13,8 @@ import { Rewards } from './pages/Rewards'
 import { Leaderboard } from './pages/Leaderboard'
 import { Certificate } from './pages/Certificate'
 import { Admin } from './pages/Admin'
+import { HealthScore } from './pages/HealthScore'
+import { HealthScoreResult } from './pages/HealthScoreResult'
 import { MainLayout } from './components/layout/MainLayout'
 import { AdminLayout } from './components/layout/AdminLayout'
 import { XPToastProvider } from './hooks/useXPToast'
@@ -58,6 +60,8 @@ export default function App() {
             <Route path="/rewards" element={<Rewards />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/certificate" element={<Certificate />} />
+            <Route path="/health-score" element={<HealthScore />} />
+            <Route path="/health-score/result" element={<HealthScoreResult />} />
           </Route>
         </Route>
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { BookOpen, LayoutDashboard, LogOut, Menu, Shield, Trophy, X, Award, Users } from 'lucide-react'
+import { Activity, Award, BookOpen, LayoutDashboard, LogOut, Menu, Shield, Trophy, Users, X } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import { NotificationBell } from '../NotificationBell'
 import { useI18n } from '../../context/I18nContext'
@@ -69,6 +69,11 @@ export function Navbar() {
           <NavLink to="/certificate" className={linkClass}>
             <span className="flex items-center gap-1.5">
               <Award className="h-4 w-4" /> {t('navCertificate')}
+            </span>
+          </NavLink>
+          <NavLink to="/health-score" className={linkClass}>
+            <span className="flex items-center gap-1.5">
+              <Activity className="h-4 w-4" /> Health Score
             </span>
           </NavLink>
           {user.role === 'admin' && (
@@ -152,6 +157,9 @@ export function Navbar() {
               </NavLink>
               <NavLink to="/certificate" className={linkClass} onClick={close}>
                 {t('navCertificate')}
+              </NavLink>
+              <NavLink to="/health-score" className={linkClass} onClick={close}>
+                Health Score
               </NavLink>
               {user.role === 'admin' && (
                 <NavLink to="/admin" className={linkClass} onClick={close}>
